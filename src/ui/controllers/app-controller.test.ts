@@ -97,6 +97,7 @@ function createElements(): AppElements {
     textCleanerTrimLineEndInput: document.createElement('input'),
     textCleanerRemoveEmptyLinesInput: document.createElement('input'),
     textCleanerTrimWholeTextInput: document.createElement('input'),
+    textCleanerRemovePunctuationAfterLinksInput: document.createElement('input'),
     textCleanerRemoveDotBeforeEmojiInput: document.createElement('input'),
     textCleanerExcludeSpacesFromCharacterCountInput: document.createElement('input'),
     textCleanerOutputCharacterCount: document.createElement('p'),

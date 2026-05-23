@@ -26,6 +26,7 @@ export interface AppElements {
   readonly textCleanerTrimLineEndInput: HTMLInputElement;
   readonly textCleanerRemoveEmptyLinesInput: HTMLInputElement;
   readonly textCleanerTrimWholeTextInput: HTMLInputElement;
+  readonly textCleanerRemovePunctuationAfterLinksInput: HTMLInputElement;
   readonly textCleanerRemoveDotBeforeEmojiInput: HTMLInputElement;
   readonly textCleanerExcludeSpacesFromCharacterCountInput: HTMLInputElement;
   readonly textCleanerOutputCharacterCount: HTMLParagraphElement;
@@ -123,6 +124,10 @@ export function getAppElements(): AppElements {
     textCleanerTrimWholeTextInput: must(
       document.querySelector<HTMLInputElement>('#text-cleaner-setting-trim-whole-text'),
       '#text-cleaner-setting-trim-whole-text not found'
+    ),
+    textCleanerRemovePunctuationAfterLinksInput: must(
+      document.querySelector<HTMLInputElement>('#text-cleaner-setting-remove-punctuation-after-links'),
+      '#text-cleaner-setting-remove-punctuation-after-links not found'
     ),
     textCleanerRemoveDotBeforeEmojiInput: must(
       document.querySelector<HTMLInputElement>('#text-cleaner-setting-remove-dot-before-emoji'),

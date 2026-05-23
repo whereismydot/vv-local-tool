@@ -24,6 +24,9 @@ describe('app elements resolver', () => {
     expect(elements.orderInput.id).toBe('order-input');
     expect(elements.textCleanerSourceInput.id).toBe('text-cleaner-source');
     expect(elements.textCleanerOutputCharacterCount.id).toBe('text-cleaner-output-character-count');
+    expect(elements.textCleanerRemovePunctuationAfterLinksInput.id).toBe(
+      'text-cleaner-setting-remove-punctuation-after-links'
+    );
     expect(elements.textCleanerRemoveDotBeforeEmojiInput.id).toBe('text-cleaner-setting-remove-dot-before-emoji');
     expect(elements.textCleanerExcludeSpacesFromCharacterCountInput.id).toBe(
       'text-cleaner-setting-exclude-spaces-from-character-count'

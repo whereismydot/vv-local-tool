@@ -55,6 +55,7 @@ describe('text cleaner settings storage', () => {
       trimLineEnd: true,
       removeEmptyLines: false,
       trimWholeText: true,
+      removePunctuationAfterLinks: false,
       removeDotBeforeEmoji: false,
       excludeSpacesFromCharacterCount: true
     });
@@ -64,6 +65,7 @@ describe('text cleaner settings storage', () => {
     expect(hydrated.replaceTabsWithSpaces).toBe(true);
     expect(hydrated.replaceNbspWithSpace).toBe(false);
     expect(hydrated.trimLineStart).toBe(false);
+    expect(hydrated.removePunctuationAfterLinks).toBe(false);
     expect(hydrated.removeDotBeforeEmoji).toBe(false);
     expect(hydrated.excludeSpacesFromCharacterCount).toBe(true);
   });
@@ -83,6 +85,7 @@ describe('text cleaner settings storage', () => {
       ...createDefaultTextCleanerSettings(),
       normalizeLineBreaks: false,
       removeEmptyLines: false,
+      removePunctuationAfterLinks: false,
       removeDotBeforeEmoji: false,
       excludeSpacesFromCharacterCount: false
     };
@@ -92,6 +95,7 @@ describe('text cleaner settings storage', () => {
 
     expect(restored.normalizeLineBreaks).toBe(false);
     expect(restored.removeEmptyLines).toBe(false);
+    expect(restored.removePunctuationAfterLinks).toBe(false);
     expect(restored.removeDotBeforeEmoji).toBe(false);
     expect(restored.excludeSpacesFromCharacterCount).toBe(false);
   });
@@ -113,6 +117,7 @@ describe('text cleaner settings storage', () => {
     });
 
     expect(hydrated.normalizeLineBreaks).toBe(false);
+    expect(hydrated.removePunctuationAfterLinks).toBe(true);
     expect(hydrated.removeDotBeforeEmoji).toBe(true);
     expect(hydrated.excludeSpacesFromCharacterCount).toBe(true);
   });

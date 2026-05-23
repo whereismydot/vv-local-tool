@@ -173,6 +173,10 @@
                 <span>Обрезать пустоты по краям всего текста</span>
               </label>
               <label class="cleaner-setting-row">
+                <input id="text-cleaner-setting-remove-punctuation-after-links" type="checkbox" />
+                <span>Удалять пунктуацию после ссылки</span>
+              </label>
+              <label class="cleaner-setting-row">
                 <input id="text-cleaner-setting-remove-dot-before-emoji" type="checkbox" />
                 <span>Удалять точку перед эмодзи</span>
               </label>

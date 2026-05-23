@@ -1,5 +1,6 @@
 import type { TextCleanerResult, TextCleanerSettings } from '../types';
 import { removeDotBeforeEmoji } from './remove-dot-before-emoji';
+import { removePunctuationAfterLinks } from './remove-punctuation-after-links';
 
 const MULTI_SPACES_PATTERN = / {2,}/g;
 
@@ -117,6 +118,10 @@ export function cleanText(input: string, settings: TextCleanerSettings): TextCle
 
   if (settings.trimWholeText) {
     nextText = nextText.trim();
+  }
+
+  if (settings.removePunctuationAfterLinks) {
+    nextText = removePunctuationAfterLinks(nextText);
   }
 
   if (settings.removeDotBeforeEmoji) {

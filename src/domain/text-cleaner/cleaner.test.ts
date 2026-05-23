@@ -120,4 +120,26 @@ describe('cleanText', () => {
     expect(result.output).toContain('Надеемся, сможем доработать её, чтобы не огорчать 🙏🏻');
     expect(result.output).not.toContain('чтобы не огорчать. 🙏🏻');
   });
+  it('removes punctuation after links when setting is enabled', () => {
+    const input =
+      'Спасибо за ответ. В таком случае необходимо получить чуть больше подробностей. Вы пытались передать сами пакеты для ' +
+      'последующей переработки? Если да, это возможно лишь при оформлении заказа с позицией «Сбор пакетов и крышек» ' +
+      'https://vkusvill.ru/goods/sbor-paketov-i-kryshek-53164.html. Если же нет и хотели отказаться от каких-то позиций — ' +
+      'уточните, пожалуйста, каких именно?';
+    const result = cleanText(input, buildSettings({ removePunctuationAfterLinks: true }));
+
+    expect(result.output).toContain(
+      'https://vkusvill.ru/goods/sbor-paketov-i-kryshek-53164.html Если же нет и хотели отказаться от каких-то позиций'
+    );
+    expect(result.output).not.toContain(
+      'https://vkusvill.ru/goods/sbor-paketov-i-kryshek-53164.html. Если же нет и хотели отказаться от каких-то позиций'
+    );
+  });
+
+  it('keeps punctuation after links when setting is disabled', () => {
+    const input = 'Подробности: https://example.com/path?x=1.';
+    const result = cleanText(input, buildSettings({ removePunctuationAfterLinks: false }));
+
+    expect(result.output).toBe('Подробности: https://example.com/path?x=1.');
+  });
 });

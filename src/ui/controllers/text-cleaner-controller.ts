@@ -43,6 +43,7 @@ export function createTextCleanerController(dependencies: TextCleanerControllerD
     trimLineEnd: elements.textCleanerTrimLineEndInput,
     removeEmptyLines: elements.textCleanerRemoveEmptyLinesInput,
     trimWholeText: elements.textCleanerTrimWholeTextInput,
+    removePunctuationAfterLinks: elements.textCleanerRemovePunctuationAfterLinksInput,
     removeDotBeforeEmoji: elements.textCleanerRemoveDotBeforeEmojiInput,
     excludeSpacesFromCharacterCount: elements.textCleanerExcludeSpacesFromCharacterCountInput
   };
@@ -66,6 +67,7 @@ export function createTextCleanerController(dependencies: TextCleanerControllerD
       trimLineEnd: settingInputs.trimLineEnd.checked,
       removeEmptyLines: settingInputs.removeEmptyLines.checked,
       trimWholeText: settingInputs.trimWholeText.checked,
+      removePunctuationAfterLinks: settingInputs.removePunctuationAfterLinks.checked,
       removeDotBeforeEmoji: settingInputs.removeDotBeforeEmoji.checked,
       excludeSpacesFromCharacterCount: settingInputs.excludeSpacesFromCharacterCount.checked
     };

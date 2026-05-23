@@ -32,6 +32,8 @@ function createElements(): AppElements {
   removeEmptyLines.type = 'checkbox';
   const trimWholeText = document.createElement('input');
   trimWholeText.type = 'checkbox';
+  const removePunctuationAfterLinks = document.createElement('input');
+  removePunctuationAfterLinks.type = 'checkbox';
   const removeDotBeforeEmoji = document.createElement('input');
   removeDotBeforeEmoji.type = 'checkbox';
   const excludeSpacesFromCharacterCount = document.createElement('input');
@@ -54,6 +56,7 @@ function createElements(): AppElements {
     trimLineEnd,
     removeEmptyLines,
     trimWholeText,
+    removePunctuationAfterLinks,
     removeDotBeforeEmoji,
     excludeSpacesFromCharacterCount
   );
@@ -75,6 +78,7 @@ function createElements(): AppElements {
     textCleanerTrimLineEndInput: trimLineEnd,
     textCleanerRemoveEmptyLinesInput: removeEmptyLines,
     textCleanerTrimWholeTextInput: trimWholeText,
+    textCleanerRemovePunctuationAfterLinksInput: removePunctuationAfterLinks,
     textCleanerRemoveDotBeforeEmojiInput: removeDotBeforeEmoji,
     textCleanerExcludeSpacesFromCharacterCountInput: excludeSpacesFromCharacterCount
   } as unknown as AppElements;
@@ -111,6 +115,7 @@ describe('text cleaner controller', () => {
       setStatus: vi.fn()
     });
 
+    expect(elements.textCleanerRemovePunctuationAfterLinksInput.checked).toBe(true);
     expect(elements.textCleanerRemoveDotBeforeEmojiInput.checked).toBe(true);
     expect(elements.textCleanerExcludeSpacesFromCharacterCountInput.checked).toBe(true);
   });
@@ -120,6 +125,7 @@ describe('text cleaner controller', () => {
       TEXT_CLEANER_SETTINGS_STORAGE_KEY,
       JSON.stringify({
         ...createDefaultTextCleanerSettings(),
+        removePunctuationAfterLinks: false,
         removeDotBeforeEmoji: false,
         excludeSpacesFromCharacterCount: false
       })
@@ -132,6 +138,7 @@ describe('text cleaner controller', () => {
       setStatus: vi.fn()
     });
 
+    expect(elements.textCleanerRemovePunctuationAfterLinksInput.checked).toBe(false);
     expect(elements.textCleanerRemoveDotBeforeEmojiInput.checked).toBe(false);
     expect(elements.textCleanerExcludeSpacesFromCharacterCountInput.checked).toBe(false);
   });
@@ -190,6 +197,23 @@ describe('text cleaner controller', () => {
     elements.textCleanerRemoveDotBeforeEmojiInput.checked = false;
     elements.textCleanerRemoveDotBeforeEmojiInput.dispatchEvent(new Event('change'));
     expect(elements.textCleanerOutputInput.value).toBe('Спасибо. 😊 Хорошего дня.');
+  });
+
+  it('toggles remove-punctuation-after-links setting and updates output', () => {
+    const elements = createElements();
+    createTextCleanerController({
+      elements,
+      copyText: async () => true,
+      setStatus: vi.fn()
+    });
+
+    elements.textCleanerSourceInput.value = 'Подробности: https://example.com/path?x=1.';
+    elements.textCleanerSourceInput.dispatchEvent(new Event('input'));
+    expect(elements.textCleanerOutputInput.value).toBe('Подробности: https://example.com/path?x=1');
+
+    elements.textCleanerRemovePunctuationAfterLinksInput.checked = false;
+    elements.textCleanerRemovePunctuationAfterLinksInput.dispatchEvent(new Event('change'));
+    expect(elements.textCleanerOutputInput.value).toBe('Подробности: https://example.com/path?x=1.');
   });
 
   it('toggles whitespace counting mode and updates counter', () => {

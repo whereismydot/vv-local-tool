@@ -13,6 +13,7 @@ const DEFAULT_TEXT_CLEANER_SETTINGS: TextCleanerSettings = {
   trimLineEnd: true,
   removeEmptyLines: true,
   trimWholeText: true,
+  removePunctuationAfterLinks: true,
   removeDotBeforeEmoji: true,
   excludeSpacesFromCharacterCount: true
 };
@@ -74,6 +75,11 @@ export function hydrateTextCleanerSettings(input: unknown): TextCleanerSettings 
     trimLineEnd: getBooleanSetting(input, 'trimLineEnd', defaults.trimLineEnd),
     removeEmptyLines: getBooleanSetting(input, 'removeEmptyLines', defaults.removeEmptyLines),
     trimWholeText: getBooleanSetting(input, 'trimWholeText', defaults.trimWholeText),
+    removePunctuationAfterLinks: getBooleanSetting(
+      input,
+      'removePunctuationAfterLinks',
+      defaults.removePunctuationAfterLinks
+    ),
     removeDotBeforeEmoji: getBooleanSetting(input, 'removeDotBeforeEmoji', defaults.removeDotBeforeEmoji),
     excludeSpacesFromCharacterCount: getBooleanSetting(
       input,
